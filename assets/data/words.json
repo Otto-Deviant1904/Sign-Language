@@ -1,0 +1,142 @@
+[
+  {
+    "id": "hello",
+    "word": "Hello",
+    "image": "assets/words/hello.png",
+    "category": "Greetings",
+    "description": "Open hand near forehead, then move it outward and forward in a slight wave. Palm faces outward."
+  },
+  {
+    "id": "thankyou",
+    "word": "Thank You",
+    "image": "assets/words/thankyou.png",
+    "category": "Greetings",
+    "description": "Flat hand touches chin or lips, then moves outward and downward toward the person you are thanking."
+  },
+  {
+    "id": "sorry",
+    "word": "Sorry",
+    "image": "assets/words/sorry.png",
+    "category": "Emotions",
+    "description": "Fist placed on chest, make circular motion. The movement expresses remorse or apology."
+  },
+  {
+    "id": "friend",
+    "word": "Friend",
+    "image": "assets/words/friend.png",
+    "category": "People",
+    "description": "Hook index fingers together with both hands, then switch which hand is on top. Interlocking fingers symbolize friendship."
+  },
+  {
+    "id": "water",
+    "word": "Water",
+    "image": "assets/words/water.png",
+    "category": "Food & Drink",
+    "description": "W handshape (three fingers) tapped twice on the chin. Chin represents drinking."
+  },
+  {
+    "id": "eat",
+    "word": "Eat",
+    "image": "assets/words/eat.png",
+    "category": "Food & Drink",
+    "description": "Flat O handshape moved to mouth twice, mimicking putting food in your mouth."
+  },
+  {
+    "id": "drink",
+    "word": "Drink",
+    "image": "assets/words/drink.png",
+    "category": "Food & Drink",
+    "description": "C handshape raised to mouth, tilting back as if drinking from a cup."
+  },
+  {
+    "id": "family",
+    "word": "Family",
+    "image": "assets/words/family.png",
+    "category": "People",
+    "description": "F handshape on both hands, move outward in a circle until pinkies touch. Circle represents a family unit."
+  },
+  {
+    "id": "yes",
+    "word": "Yes",
+    "image": "assets/words/yes.png",
+    "category": "Common",
+    "description": "Fist nods up and down, like a head nodding yes."
+  },
+  {
+    "id": "no",
+    "word": "No",
+    "image": "assets/words/no.png",
+    "category": "Common",
+    "description": "Index and middle finger quickly close against thumb twice, like a talking motion."
+  },
+  {
+    "id": "please",
+    "word": "Please",
+    "image": "assets/words/please.png",
+    "category": "Greetings",
+    "description": "Open hand on chest, move in a circular motion. The heart area represents sincerity."
+  },
+  {
+    "id": "help",
+    "word": "Help",
+    "image": "assets/words/help.png",
+    "category": "Common",
+    "description": "Thumbs-up fist rests on open palm, both hands move upward together."
+  },
+  {
+    "id": "school",
+    "word": "School",
+    "image": "assets/words/school.png",
+    "category": "Places",
+    "description": "Clap hands twice with dominant hand on top, fingers spread. Represents clapping in a classroom."
+  },
+  {
+    "id": "home",
+    "word": "Home",
+    "image": "assets/words/home.png",
+    "category": "Places",
+    "description": "Flat O handshape touches cheek then moves to temple. Represents sleeping and eating at home."
+  },
+  {
+    "id": "love",
+    "word": "Love",
+    "image": "assets/words/love.png",
+    "category": "Emotions",
+    "description": "Both arms crossed over chest, fists closed. Like hugging yourself to show love."
+  },
+  {
+    "id": "good",
+    "word": "Good",
+    "image": "assets/words/good.png",
+    "category": "Common",
+    "description": "Flat hand touches lips or chin, then moves downward and forward. Good comes from the mouth."
+  },
+  {
+    "id": "bad",
+    "word": "Bad",
+    "image": "assets/words/bad.png",
+    "category": "Common",
+    "description": "Flat hand touches lips, then flips downward with palm facing down. Opposite of good."
+  },
+  {
+    "id": "mother",
+    "word": "Mother",
+    "image": "assets/words/mother.png",
+    "category": "People",
+    "description": "Open 5-hand, thumb touches chin twice. Chin area represents female signs."
+  },
+  {
+    "id": "father",
+    "word": "Father",
+    "image": "assets/words/father.png",
+    "category": "People",
+    "description": "Open 5-hand, thumb touches forehead twice. Forehead area represents male signs."
+  },
+  {
+    "id": "namaste",
+    "word": "Namaste",
+    "image": "assets/words/namaste.png",
+    "category": "Greetings",
+    "description": "Both palms pressed together in front of chest (prayer position), slight bow. Traditional Indian greeting."
+  }
+]
