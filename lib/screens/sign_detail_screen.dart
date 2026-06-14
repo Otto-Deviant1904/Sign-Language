@@ -59,6 +59,7 @@ class _SignDetailScreenState extends State<SignDetailScreen>
   Widget build(BuildContext context) {
     final isAlphabet = widget.cartItem.type == CartItemType.alphabet;
     final accentColor = isAlphabet ? AppTheme.primary : const Color(0xFF1565C0);
+    final imageHeight = MediaQuery.of(context).size.height * 0.38;
 
     return Scaffold(
       backgroundColor: AppTheme.surface,
@@ -110,14 +111,14 @@ class _SignDetailScreenState extends State<SignDetailScreen>
                 child: FadeTransition(
                   opacity: _fadeAnim,
                   child: Container(
-                    height: 300,
+                    height: imageHeight.clamp(240.0, 340.0),
                     decoration: BoxDecoration(
                       color: AppTheme.surfaceCard,
                       borderRadius: BorderRadius.circular(24),
                       border: Border.all(color: AppTheme.divider, width: 1.5),
                       boxShadow: [
                         BoxShadow(
-                          color: accentColor.withOpacity(0.10),
+                          color: accentColor.withValues(alpha: 0.10),
                           blurRadius: 24,
                           offset: const Offset(0, 8),
                         ),
@@ -128,7 +129,7 @@ class _SignDetailScreenState extends State<SignDetailScreen>
                       child: SignImageWidget(
                         imagePath: widget.cartItem.image,
                         width: double.infinity,
-                        height: 300,
+                        height: imageHeight.clamp(240.0, 340.0),
                         fit: BoxFit.contain,
                         label: widget.cartItem.displayName,
                       ),
@@ -152,10 +153,10 @@ class _SignDetailScreenState extends State<SignDetailScreen>
                         padding: const EdgeInsets.symmetric(
                             horizontal: 16, vertical: 12),
                         decoration: BoxDecoration(
-                          color: accentColor.withOpacity(0.06),
+                          color: accentColor.withValues(alpha: 0.06),
                           borderRadius: BorderRadius.circular(14),
                           border: Border.all(
-                              color: accentColor.withOpacity(0.15)),
+                              color: accentColor.withValues(alpha: 0.15)),
                         ),
                         child: Row(
                           children: [
@@ -171,10 +172,10 @@ class _SignDetailScreenState extends State<SignDetailScreen>
                               child: Text(
                                 widget.cartItem.displayName,
                                 style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 22,
                                   fontWeight: FontWeight.w800,
                                   color: accentColor,
-                                  letterSpacing: 0.5,
+                                  letterSpacing: 0.2,
                                 ),
                               ),
                             ),
@@ -182,7 +183,7 @@ class _SignDetailScreenState extends State<SignDetailScreen>
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 10, vertical: 4),
                               decoration: BoxDecoration(
-                                color: accentColor.withOpacity(0.12),
+                                color: accentColor.withValues(alpha: 0.12),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Text(
@@ -231,7 +232,7 @@ class _SignDetailScreenState extends State<SignDetailScreen>
                             Text(
                               widget.cartItem.description,
                               style: const TextStyle(
-                                fontSize: 15,
+                                fontSize: 16,
                                 color: AppTheme.textPrimary,
                                 height: 1.6,
                               ),
@@ -249,12 +250,16 @@ class _SignDetailScreenState extends State<SignDetailScreen>
                           color: const Color(0xFFFFF8E1),
                           borderRadius: BorderRadius.circular(14),
                           border: Border.all(
-                              color: AppTheme.accent.withOpacity(0.3)),
+                              color: AppTheme.accent.withValues(alpha: 0.3)),
                         ),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text('💡', style: TextStyle(fontSize: 18)),
+                            const Icon(
+                              Icons.lightbulb_outline,
+                              size: 18,
+                              color: AppTheme.accent,
+                            ),
                             const SizedBox(width: 10),
                             const Expanded(
                               child: Column(

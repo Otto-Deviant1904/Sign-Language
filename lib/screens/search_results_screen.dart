@@ -40,7 +40,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
     return Scaffold(
       backgroundColor: AppTheme.surface,
       appBar: AppBar(
-        backgroundColor: AppTheme.primary,
+        backgroundColor: AppTheme.primaryDark,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new,
               color: Colors.white, size: 20),
@@ -49,18 +49,26 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
             Navigator.pop(context);
           },
         ),
-        title: TextField(
-          controller: _controller,
-          autofocus: true,
-          style: const TextStyle(color: Colors.white, fontSize: 16),
-          cursorColor: Colors.white70,
-          decoration: const InputDecoration(
-            hintText: 'Search signs...',
-            hintStyle: TextStyle(color: Colors.white54),
-            border: InputBorder.none,
+        title: Container(
+          height: 42,
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          decoration: BoxDecoration(
+            color: Colors.white.withValues(alpha: 0.14),
+            borderRadius: BorderRadius.circular(12),
           ),
-          onChanged: (val) =>
-              context.read<SignProvider>().setSearchQuery(val),
+          child: TextField(
+            controller: _controller,
+            autofocus: true,
+            style: const TextStyle(color: Colors.white, fontSize: 16),
+            cursorColor: Colors.white70,
+            decoration: const InputDecoration(
+              hintText: 'Search signs...',
+              hintStyle: TextStyle(color: Colors.white70, fontSize: 15),
+              border: InputBorder.none,
+            ),
+            onChanged: (val) =>
+                context.read<SignProvider>().setSearchQuery(val),
+          ),
         ),
         actions: [
           IconButton(
@@ -87,7 +95,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
           }
 
           return ListView(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(18),
             children: [
               // Results count
               Padding(
@@ -96,7 +104,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                   '$totalResults result${totalResults != 1 ? 's' : ''} for "${provider.searchQuery}"',
                   style: const TextStyle(
                     color: AppTheme.textSecondary,
-                    fontSize: 13,
+                    fontSize: 13.5,
                   ),
                 ),
               ),
@@ -136,6 +144,13 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                               color: AppTheme.surfaceCard,
                               borderRadius: BorderRadius.circular(14),
                               border: Border.all(color: AppTheme.divider),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: AppTheme.primary.withValues(alpha: 0.06),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -196,6 +211,13 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                           color: AppTheme.surfaceCard,
                           borderRadius: BorderRadius.circular(16),
                           border: Border.all(color: AppTheme.divider),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppTheme.primary.withValues(alpha: 0.05),
+                              blurRadius: 10,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
                         ),
                         child: Row(
                           children: [
@@ -226,7 +248,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                                         horizontal: 7, vertical: 2),
                                     decoration: BoxDecoration(
                                       color: AppTheme.categoryColor(word.category)
-                                          .withOpacity(0.1),
+                                          .withValues(alpha: 0.1),
                                       borderRadius: BorderRadius.circular(5),
                                     ),
                                     child: Text(
@@ -350,7 +372,7 @@ class _SectionHeader extends StatelessWidget {
           padding:
               const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
           decoration: BoxDecoration(
-            color: color.withOpacity(0.1),
+            color: color.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Text(

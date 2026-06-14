@@ -153,7 +153,7 @@ class CartIconButton extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               color:
-                  inCart ? AppTheme.accent : AppTheme.primary.withOpacity(0.1),
+                  inCart ? AppTheme.accent : AppTheme.primary.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Icon(
@@ -168,8 +168,3 @@ class CartIconButton extends StatelessWidget {
   }
 }
 
-// Needed by cart_button.dart — AppStrings referenced here
-class AppStrings {
-  static const String addToCart = 'Add to Cart';
-  static const String inCart = '✓ Saved';
-}

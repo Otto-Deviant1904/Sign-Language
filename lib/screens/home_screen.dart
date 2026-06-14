@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.08),
+                  color: Colors.black.withValues(alpha: 0.08),
                   blurRadius: 20,
                   offset: const Offset(0, -4),
                 ),
@@ -162,8 +162,12 @@ class _HomeContentState extends State<_HomeContent>
                 child: Container(
                   padding:
                       const EdgeInsets.fromLTRB(20, 32, 20, 28),
-                  decoration: const BoxDecoration(
-                    color: AppTheme.primary,
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      colors: [AppTheme.primary, AppTheme.primaryDark],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
                     borderRadius: BorderRadius.vertical(
                       bottom: Radius.circular(28),
                     ),
@@ -176,7 +180,7 @@ class _HomeContentState extends State<_HomeContent>
                           Container(
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.15),
+                              color: Colors.white.withValues(alpha: 0.15),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: const Icon(
@@ -201,8 +205,8 @@ class _HomeContentState extends State<_HomeContent>
                               Text(
                                 'Indian Sign Language Reference',
                                 style: TextStyle(
-                                  color: Colors.white.withOpacity(0.75),
-                                  fontSize: 12,
+                                  color: Colors.white.withValues(alpha: 0.78),
+                                  fontSize: 13,
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -218,7 +222,7 @@ class _HomeContentState extends State<_HomeContent>
                           borderRadius: BorderRadius.circular(14),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.08),
+                              color: Colors.black.withValues(alpha: 0.08),
                               blurRadius: 12,
                               offset: const Offset(0, 4),
                             ),
@@ -239,8 +243,16 @@ class _HomeContentState extends State<_HomeContent>
                             prefixIcon: const Icon(Icons.search,
                                 color: AppTheme.textSecondary),
                             suffixIcon: IconButton(
-                              icon: const Icon(Icons.arrow_forward,
-                                  color: AppTheme.primary),
+                              icon: Container(
+                                width: 28,
+                                height: 28,
+                                decoration: BoxDecoration(
+                                  color: AppTheme.primary.withValues(alpha: 0.08),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Icon(Icons.arrow_forward,
+                                    color: AppTheme.primary, size: 18),
+                              ),
                               onPressed: () =>
                                   _onSearch(_searchController.text),
                             ),
@@ -257,26 +269,59 @@ class _HomeContentState extends State<_HomeContent>
                 ),
               ),
 
+              // Error banner (shown if initialization failed)
+              SliverToBoxAdapter(
+                child: Consumer<SignProvider>(
+                  builder: (context, provider, _) {
+                    if (provider.error == null) return const SizedBox.shrink();
+                    return Container(
+                      margin: const EdgeInsets.fromLTRB(20, 16, 20, 0),
+                      padding: const EdgeInsets.all(14),
+                      decoration: BoxDecoration(
+                        color: AppTheme.cartRed.withValues(alpha: 0.08),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                            color: AppTheme.cartRed.withValues(alpha: 0.3)),
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.error_outline,
+                              color: AppTheme.cartRed, size: 18),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              provider.error!,
+                              style: const TextStyle(
+                                  fontSize: 12, color: AppTheme.cartRed),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+
               // Quick stats
               SliverToBoxAdapter(
                 child: Consumer<SignProvider>(
                   builder: (context, provider, _) => Padding(
                     padding: const EdgeInsets.fromLTRB(20, 24, 20, 8),
-                    child: Row(
+                    child: Wrap(
+                      spacing: 10,
+                      runSpacing: 10,
                       children: [
                         _StatChip(
                           icon: Icons.sort_by_alpha,
                           label: '26 Letters',
                           color: AppTheme.primary,
                         ),
-                        const SizedBox(width: 10),
                         _StatChip(
                           icon: Icons.library_books,
                           label:
                               '${provider.words.length} Words',
                           color: AppTheme.accent,
                         ),
-                        const SizedBox(width: 10),
                         _StatChip(
                           icon: Icons.bookmark,
                           label:
@@ -315,7 +360,6 @@ class _HomeContentState extends State<_HomeContent>
                         subtitle: 'A to Z · Fingerspelling guide',
                         icon: Icons.sort_by_alpha,
                         color: AppTheme.primary,
-                        emoji: '🤟',
                         onTap: () {
                           final homeState = context
                               .findAncestorStateOfType<_HomeScreenState>();
@@ -328,7 +372,6 @@ class _HomeContentState extends State<_HomeContent>
                         subtitle: 'Common signs · Greetings · Daily life',
                         icon: Icons.library_books,
                         color: const Color(0xFF1565C0),
-                        emoji: '👋',
                         onTap: () {
                           final homeState = context
                               .findAncestorStateOfType<_HomeScreenState>();
@@ -341,7 +384,6 @@ class _HomeContentState extends State<_HomeContent>
                         subtitle: 'Your personal sign collection',
                         icon: Icons.bookmark,
                         color: AppTheme.accent,
-                        emoji: '📚',
                         onTap: () {
                           final homeState = context
                               .findAncestorStateOfType<_HomeScreenState>();
@@ -360,10 +402,10 @@ class _HomeContentState extends State<_HomeContent>
                   child: Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: AppTheme.primary.withOpacity(0.06),
+                      color: AppTheme.primary.withValues(alpha: 0.06),
                       borderRadius: BorderRadius.circular(14),
                       border: Border.all(
-                          color: AppTheme.primary.withOpacity(0.15)),
+                          color: AppTheme.primary.withValues(alpha: 0.15)),
                     ),
                     child: Row(
                       children: [
@@ -408,19 +450,19 @@ class _StatChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.08),
+        color: color.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: color.withOpacity(0.2)),
+        border: Border.all(color: color.withValues(alpha: 0.2)),
       ),
       child: Row(
         children: [
-          Icon(icon, color: color, size: 14),
-          const SizedBox(width: 5),
+          Icon(icon, color: color, size: 15),
+          const SizedBox(width: 6),
           Text(
             label,
             style: TextStyle(
               color: color,
-              fontSize: 12,
+              fontSize: 12.5,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -435,7 +477,6 @@ class _MainMenuCard extends StatefulWidget {
   final String subtitle;
   final IconData icon;
   final Color color;
-  final String emoji;
   final VoidCallback onTap;
 
   const _MainMenuCard({
@@ -443,7 +484,6 @@ class _MainMenuCard extends StatefulWidget {
     required this.subtitle,
     required this.icon,
     required this.color,
-    required this.emoji,
     required this.onTap,
   });
 
@@ -471,28 +511,31 @@ class _MainMenuCardState extends State<_MainMenuCard> {
             borderRadius: BorderRadius.circular(18),
             boxShadow: [
               BoxShadow(
-                color: widget.color.withOpacity(0.1),
+                color: widget.color.withValues(alpha: 0.1),
                 blurRadius: 16,
                 offset: const Offset(0, 4),
               ),
             ],
             border: Border.all(
-              color: widget.color.withOpacity(0.12),
+              color: widget.color.withValues(alpha: 0.12),
               width: 1.5,
             ),
           ),
           child: Row(
             children: [
               Container(
-                width: 56,
-                height: 56,
-                decoration: BoxDecoration(
-                  color: widget.color.withOpacity(0.1),
+                  width: 56,
+                  height: 56,
+                  decoration: BoxDecoration(
+                  color: widget.color.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(14),
                 ),
                 child: Center(
-                  child: Text(widget.emoji,
-                      style: const TextStyle(fontSize: 26)),
+                  child: Icon(
+                    widget.icon,
+                    color: widget.color,
+                    size: 28,
+                  ),
                 ),
               ),
               const SizedBox(width: 16),
@@ -521,7 +564,7 @@ class _MainMenuCardState extends State<_MainMenuCard> {
               ),
               Icon(
                 Icons.chevron_right,
-                color: widget.color.withOpacity(0.6),
+                color: widget.color.withValues(alpha: 0.6),
                 size: 22,
               ),
             ],

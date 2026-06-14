@@ -21,7 +21,7 @@ class CartScreen extends StatelessWidget {
               SliverAppBar(
                 floating: false,
                 pinned: true,
-                backgroundColor: AppTheme.accent,
+                backgroundColor: AppTheme.primaryDark,
                 title: Row(
                   children: [
                     const Text(
@@ -36,8 +36,8 @@ class CartScreen extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 3),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.25),
+                          decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.22),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Text(
@@ -81,7 +81,7 @@ class CartScreen extends StatelessWidget {
                     child: Text(
                       '${provider.cartCount} sign${provider.cartCount != 1 ? 's' : ''} saved',
                       style: const TextStyle(
-                          color: AppTheme.textSecondary, fontSize: 13),
+                          color: AppTheme.textSecondary, fontSize: 13.5),
                     ),
                   ),
                 ),
@@ -168,7 +168,7 @@ class _CartItemCardState extends State<_CartItemCard> {
         alignment: Alignment.centerRight,
         padding: const EdgeInsets.only(right: 20),
         decoration: BoxDecoration(
-          color: AppTheme.cartRed.withOpacity(0.12),
+          color: AppTheme.cartRed.withValues(alpha: 0.12),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
@@ -210,7 +210,7 @@ class _CartItemCardState extends State<_CartItemCard> {
               border: Border.all(color: AppTheme.divider, width: 1.5),
               boxShadow: [
                 BoxShadow(
-                  color: accentColor.withOpacity(0.05),
+                  color: accentColor.withValues(alpha: 0.05),
                   blurRadius: 8,
                   offset: const Offset(0, 2),
                 ),
@@ -239,7 +239,7 @@ class _CartItemCardState extends State<_CartItemCard> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 8, vertical: 2),
                             decoration: BoxDecoration(
-                              color: accentColor.withOpacity(0.1),
+                              color: accentColor.withValues(alpha: 0.1),
                               borderRadius: BorderRadius.circular(6),
                             ),
                             child: Text(
@@ -285,7 +285,7 @@ class _CartItemCardState extends State<_CartItemCard> {
                   child: Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: AppTheme.cartRed.withOpacity(0.08),
+                      color: AppTheme.cartRed.withValues(alpha: 0.08),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: const Icon(Icons.close,
@@ -313,7 +313,7 @@ class _EmptyCart extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(28),
               decoration: BoxDecoration(
-                color: AppTheme.accent.withOpacity(0.08),
+                color: AppTheme.accent.withValues(alpha: 0.08),
                 shape: BoxShape.circle,
               ),
               child: const Icon(
@@ -345,9 +345,9 @@ class _EmptyCart extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               decoration: BoxDecoration(
-                color: AppTheme.primary.withOpacity(0.06),
+                color: AppTheme.primary.withValues(alpha: 0.06),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: AppTheme.primary.withOpacity(0.2)),
+                border: Border.all(color: AppTheme.primary.withValues(alpha: 0.2)),
               ),
               child: const Row(
                 mainAxisSize: MainAxisSize.min,

@@ -33,6 +33,40 @@ class AppTheme {
   }
 
   static ThemeData get theme {
+    const textTheme = TextTheme(
+      headlineMedium: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.w800,
+        letterSpacing: 0.2,
+        color: textPrimary,
+      ),
+      titleLarge: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.w700,
+        color: textPrimary,
+      ),
+      titleMedium: TextStyle(
+        fontSize: 17,
+        fontWeight: FontWeight.w700,
+        color: textPrimary,
+      ),
+      bodyLarge: TextStyle(
+        fontSize: 16,
+        height: 1.5,
+        color: textPrimary,
+      ),
+      bodyMedium: TextStyle(
+        fontSize: 14,
+        height: 1.5,
+        color: textSecondary,
+      ),
+      labelLarge: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 0.2,
+      ),
+    );
+
     return ThemeData(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
@@ -41,22 +75,26 @@ class AppTheme {
       ),
       scaffoldBackgroundColor: surface,
       fontFamily: 'Roboto',
+      textTheme: textTheme,
+      visualDensity: VisualDensity.standard,
       appBarTheme: const AppBarTheme(
         backgroundColor: primary,
         foregroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
+        toolbarHeight: 64,
         titleTextStyle: TextStyle(
           fontFamily: 'Roboto',
-          fontSize: 20,
+          fontSize: 21,
           fontWeight: FontWeight.w700,
           color: Colors.white,
-          letterSpacing: 0.5,
+          letterSpacing: 0.2,
         ),
       ),
       cardTheme: CardThemeData(
         color: surfaceCard,
-        elevation: 0,
+        elevation: 1,
+        shadowColor: shadow,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
@@ -94,8 +132,16 @@ class AppTheme {
         ),
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-        hintStyle: const TextStyle(color: textLight, fontSize: 15),
+        hintStyle: const TextStyle(color: textLight, fontSize: 15, height: 1.3),
         prefixIconColor: textSecondary,
+      ),
+      chipTheme: ChipThemeData(
+        labelStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+        backgroundColor: surfaceCard,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        side: const BorderSide(color: divider),
+        selectedColor: primary,
+        secondaryLabelStyle: const TextStyle(color: Colors.white),
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: surfaceCard,
@@ -105,11 +151,11 @@ class AppTheme {
         type: BottomNavigationBarType.fixed,
         selectedLabelStyle: TextStyle(
           fontWeight: FontWeight.w600,
-          fontSize: 11,
+          fontSize: 12,
         ),
         unselectedLabelStyle: TextStyle(
           fontWeight: FontWeight.w400,
-          fontSize: 11,
+          fontSize: 12,
         ),
       ),
     );
@@ -125,7 +171,7 @@ class AppStrings {
   static const String searchHint = 'Search signs, words, letters...';
   static const String addToCart = 'Add to Cart';
   static const String removeFromCart = 'Remove from Cart';
-  static const String inCart = '✓ Saved to Cart';
+  static const String inCart = 'Saved to Cart';
   static const String cartEmpty = 'Your sign cart is empty';
   static const String cartEmptySub =
       'Browse alphabets or words and save signs for quick reference.';

@@ -28,6 +28,28 @@ class _WordsScreenState extends State<WordsScreen> {
                 child: CircularProgressIndicator(color: AppTheme.primary));
           }
 
+          if (provider.error != null) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(32),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.error_outline,
+                        size: 52, color: AppTheme.cartRed),
+                    const SizedBox(height: 16),
+                    Text(
+                      provider.error!,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          color: AppTheme.textSecondary, fontSize: 14),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
+
           final categories = ['All', ...provider.wordCategories];
           final words = _selectedCategory == null || _selectedCategory == 'All'
               ? provider.filteredWords
@@ -39,7 +61,7 @@ class _WordsScreenState extends State<WordsScreen> {
             slivers: [
               SliverAppBar(
                 floating: true,
-                backgroundColor: AppTheme.primary,
+                backgroundColor: AppTheme.primaryDark,
                 title: const Text(
                   'ISL Words',
                   style: TextStyle(
@@ -56,7 +78,7 @@ class _WordsScreenState extends State<WordsScreen> {
                     child: TextField(
                       onChanged: provider.setSearchQuery,
                       style:
-                          const TextStyle(color: AppTheme.textPrimary),
+                          const TextStyle(color: AppTheme.textPrimary, fontSize: 15),
                       decoration: InputDecoration(
                         hintText: 'Search words...',
                         prefixIcon: const Icon(Icons.search,
@@ -78,7 +100,7 @@ class _WordsScreenState extends State<WordsScreen> {
               // Category chips
               SliverToBoxAdapter(
                 child: SizedBox(
-                  height: 52,
+                  height: 56,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     padding:
@@ -97,7 +119,7 @@ class _WordsScreenState extends State<WordsScreen> {
                           child: AnimatedContainer(
                             duration: const Duration(milliseconds: 200),
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 14, vertical: 6),
+                                horizontal: 15, vertical: 8),
                             decoration: BoxDecoration(
                               color: selected
                                   ? AppTheme.primary
@@ -135,7 +157,7 @@ class _WordsScreenState extends State<WordsScreen> {
                   child: Text(
                     '${words.length} sign${words.length != 1 ? 's' : ''}',
                     style: const TextStyle(
-                        color: AppTheme.textSecondary, fontSize: 13),
+                        color: AppTheme.textSecondary, fontSize: 13.5),
                   ),
                 ),
               ),
@@ -237,19 +259,19 @@ class _WordCardState extends State<_WordCard> {
             scale: _pressed ? 0.97 : 1.0,
             duration: const Duration(milliseconds: 100),
             child: Container(
-              padding: const EdgeInsets.all(14),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: AppTheme.surfaceCard,
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(
                   color: inCart
-                      ? AppTheme.accent.withOpacity(0.4)
+                      ? AppTheme.accent.withValues(alpha: 0.4)
                       : AppTheme.divider,
                   width: inCart ? 2 : 1.5,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: categoryColor.withOpacity(0.06),
+                    color: categoryColor.withValues(alpha: 0.06),
                     blurRadius: 8,
                     offset: const Offset(0, 2),
                   ),
@@ -285,7 +307,7 @@ class _WordCardState extends State<_WordCard> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 8, vertical: 3),
                           decoration: BoxDecoration(
-                            color: categoryColor.withOpacity(0.1),
+                            color: categoryColor.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(6),
                           ),
                           child: Text(
@@ -303,9 +325,9 @@ class _WordCardState extends State<_WordCard> {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
-                            fontSize: 12,
+                            fontSize: 13,
                             color: AppTheme.textSecondary,
-                            height: 1.4,
+                            height: 1.45,
                           ),
                         ),
                       ],
@@ -320,8 +342,8 @@ class _WordCardState extends State<_WordCard> {
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         color: inCart
-                            ? AppTheme.accent.withOpacity(0.1)
-                            : AppTheme.primary.withOpacity(0.05),
+                            ? AppTheme.accent.withValues(alpha: 0.1)
+                            : AppTheme.primary.withValues(alpha: 0.05),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Icon(

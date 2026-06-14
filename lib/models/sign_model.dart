@@ -113,11 +113,14 @@ class CartItem {
 
   factory CartItem.fromJson(Map<String, dynamic> json) {
     return CartItem(
-      id: json['id'],
-      displayName: json['displayName'],
-      image: json['image'],
-      description: json['description'],
-      type: CartItemType.values.firstWhere((e) => e.name == json['type']),
+      id: json['id'] as String,
+      displayName: json['displayName'] as String,
+      image: json['image'] as String,
+      description: json['description'] as String,
+      type: CartItemType.values.firstWhere(
+        (e) => e.name == json['type'],
+        orElse: () => CartItemType.word,
+      ),
     );
   }
 }

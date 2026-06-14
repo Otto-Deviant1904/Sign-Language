@@ -14,6 +14,32 @@ class SignProvider extends ChangeNotifier {
   bool _isLoading = true;
   String? _error;
 
+  // Cached filtered lists — rebuilt only when _searchQuery or data changes
+  List<AlphabetSign> _cachedFilteredAlphabets = [];
+  List<WordSign> _cachedFilteredWords = [];
+  String _lastCachedQuery = '';
+
+  void _rebuildFilterCache() {
+    _lastCachedQuery = _searchQuery;
+    if (_searchQuery.isEmpty) {
+      _cachedFilteredAlphabets = _alphabets;
+      _cachedFilteredWords = _words;
+      return;
+    }
+    final q = _searchQuery.toLowerCase();
+    _cachedFilteredAlphabets = _alphabets
+        .where((a) =>
+            a.letter.toLowerCase().contains(q) ||
+            a.description.toLowerCase().contains(q))
+        .toList();
+    _cachedFilteredWords = _words
+        .where((w) =>
+            w.word.toLowerCase().contains(q) ||
+            w.description.toLowerCase().contains(q) ||
+            w.category.toLowerCase().contains(q))
+        .toList();
+  }
+
   // Getters
   List<AlphabetSign> get alphabets => _alphabets;
   List<WordSign> get words => _words;
@@ -23,22 +49,13 @@ class SignProvider extends ChangeNotifier {
   int get cartCount => _cart.length;
 
   List<AlphabetSign> get filteredAlphabets {
-    if (_searchQuery.isEmpty) return _alphabets;
-    return _alphabets
-        .where((a) =>
-            a.letter.toLowerCase().contains(_searchQuery.toLowerCase()) ||
-            a.description.toLowerCase().contains(_searchQuery.toLowerCase()))
-        .toList();
+    if (_lastCachedQuery != _searchQuery) _rebuildFilterCache();
+    return _cachedFilteredAlphabets;
   }
 
   List<WordSign> get filteredWords {
-    if (_searchQuery.isEmpty) return _words;
-    return _words
-        .where((w) =>
-            w.word.toLowerCase().contains(_searchQuery.toLowerCase()) ||
-            w.description.toLowerCase().contains(_searchQuery.toLowerCase()) ||
-            w.category.toLowerCase().contains(_searchQuery.toLowerCase()))
-        .toList();
+    if (_lastCachedQuery != _searchQuery) _rebuildFilterCache();
+    return _cachedFilteredWords;
   }
 
   bool get hasSearchResults =>
@@ -67,6 +84,7 @@ class SignProvider extends ChangeNotifier {
 
       _isLoading = false;
       _error = null;
+      _rebuildFilterCache();
     } catch (e) {
       _error = 'Failed to load sign data: $e';
       _isLoading = false;

@@ -134,4 +134,4 @@ The app handles GIFs natively via Flutter's `Image.asset()`.
 
 ---
 
-*Made with ❤️ to make Indian Sign Language accessible to all.*
+*Made to make Indian Sign Language accessible to all.*

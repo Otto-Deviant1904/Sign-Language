@@ -98,8 +98,8 @@ def make_word_svg(word_id: str) -> str:
   <circle cx="350" cy="50" r="90" fill="rgba(255,255,255,0.07)"/>
   <circle cx="50" cy="350" r="110" fill="rgba(255,255,255,0.05)"/>
   <!-- Hand icon -->
-  <text x="200" y="160" font-family="Arial" font-size="80" text-anchor="middle"
-        dominant-baseline="middle">🤟</text>
+  <text x="200" y="160" font-family="Arial" font-size="56" text-anchor="middle"
+        dominant-baseline="middle">ISL</text>
   <!-- Word -->
   <text x="200" y="245" font-family="Georgia, serif" font-size="{font_size}" font-weight="900"
         fill="white" text-anchor="middle" dominant-baseline="middle"
@@ -127,7 +127,7 @@ def main():
         path = os.path.join(alpha_dir, f"{letter}.svg")
         with open(path, 'w') as f:
             f.write(svg_content)
-        print(f"  ✓ {path}")
+        print(f"  [OK] {path}")
 
     # Generate word SVGs
     print("\nGenerating word placeholder SVGs...")
@@ -136,15 +136,15 @@ def main():
         path = os.path.join(words_dir, f"{word_id}.svg")
         with open(path, 'w') as f:
             f.write(svg_content)
-        print(f"  ✓ {path}")
+        print(f"  [OK] {path}")
 
-    print(f"\n✅ Generated {len(ALPHABET)} alphabet + {len(WORDS)} word SVGs")
-    print("\n📌 Next steps to use PNG images instead:")
+    print(f"\nGenerated {len(ALPHABET)} alphabet + {len(WORDS)} word SVGs")
+    print("\nNext steps to use PNG images instead:")
     print("  1. Download ISL images from ISLRTC: https://islrtc.nic.in")
     print("  2. Name them matching the JSON (e.g., A.png, hello.png)")
     print("  3. Place in assets/alphabet/ and assets/words/")
     print("  4. Update pubspec.yaml to include PNG files if needed")
-    print("\n📌 To convert SVG→PNG (requires cairosvg):")
+    print("\nTo convert SVG to PNG (requires cairosvg):")
     print("  pip install cairosvg")
     print("  python3 -c \"import cairosvg; cairosvg.svg2png(url='assets/alphabet/A.svg', write_to='assets/alphabet/A.png', output_width=400, output_height=400)\"")
 

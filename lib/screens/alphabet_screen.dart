@@ -6,7 +6,6 @@ import '../providers/sign_provider.dart';
 import '../data/app_theme.dart';
 import '../models/sign_model.dart';
 import '../screens/sign_detail_screen.dart';
-import '../widgets/cart_button.dart';
 
 class AlphabetScreen extends StatelessWidget {
   const AlphabetScreen({super.key});
@@ -19,6 +18,28 @@ class AlphabetScreen extends StatelessWidget {
           if (provider.isLoading) {
             return const Center(
                 child: CircularProgressIndicator(color: AppTheme.primary));
+          }
+
+          if (provider.error != null) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(32),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.error_outline,
+                        size: 52, color: AppTheme.cartRed),
+                    const SizedBox(height: 16),
+                    Text(
+                      provider.error!,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          color: AppTheme.textSecondary, fontSize: 14),
+                    ),
+                  ],
+                ),
+              ),
+            );
           }
 
           return CustomScrollView(
@@ -154,13 +175,13 @@ class _AlphabetCardState extends State<_AlphabetCard> {
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(
                   color: inCart
-                      ? AppTheme.accent.withOpacity(0.5)
+                      ? AppTheme.accent.withValues(alpha: 0.5)
                       : AppTheme.divider,
                   width: inCart ? 2 : 1.5,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: AppTheme.primary.withOpacity(0.07),
+                    color: AppTheme.primary.withValues(alpha: 0.07),
                     blurRadius: 8,
                     offset: const Offset(0, 2),
                   ),
@@ -175,8 +196,8 @@ class _AlphabetCardState extends State<_AlphabetCard> {
                     height: 48,
                     decoration: BoxDecoration(
                       color: inCart
-                          ? AppTheme.accent.withOpacity(0.12)
-                          : AppTheme.primary.withOpacity(0.08),
+                          ? AppTheme.accent.withValues(alpha: 0.12)
+                          : AppTheme.primary.withValues(alpha: 0.08),
                       shape: BoxShape.circle,
                     ),
                     child: Center(
@@ -210,8 +231,8 @@ class _AlphabetCardState extends State<_AlphabetCard> {
                           horizontal: 10, vertical: 4),
                       decoration: BoxDecoration(
                         color: inCart
-                            ? AppTheme.accent.withOpacity(0.1)
-                            : AppTheme.primary.withOpacity(0.05),
+                            ? AppTheme.accent.withValues(alpha: 0.1)
+                            : AppTheme.primary.withValues(alpha: 0.05),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Icon(

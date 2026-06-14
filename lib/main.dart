@@ -113,17 +113,18 @@ class _SplashScreenState extends State<SplashScreen>
                   width: 100,
                   height: 100,
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.15),
+                    color: Colors.white.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(26),
                     border: Border.all(
-                      color: Colors.white.withOpacity(0.2),
+                      color: Colors.white.withValues(alpha: 0.2),
                       width: 2,
                     ),
                   ),
                   child: const Center(
-                    child: Text(
-                      '🤟',
-                      style: TextStyle(fontSize: 54),
+                    child: Icon(
+                      Icons.pan_tool_alt_rounded,
+                      size: 54,
+                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -141,7 +142,7 @@ class _SplashScreenState extends State<SplashScreen>
                 Text(
                   'Indian Sign Language Reference',
                   style: TextStyle(
-                    color: Colors.white.withOpacity(0.7),
+                    color: Colors.white.withValues(alpha: 0.7),
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                     letterSpacing: 0.3,
@@ -152,7 +153,7 @@ class _SplashScreenState extends State<SplashScreen>
                   width: 32,
                   height: 32,
                   child: CircularProgressIndicator(
-                    color: Colors.white.withOpacity(0.6),
+                    color: Colors.white.withValues(alpha: 0.6),
                     strokeWidth: 2.5,
                   ),
                 ),
@@ -160,7 +161,7 @@ class _SplashScreenState extends State<SplashScreen>
                 Text(
                   'Loading signs...',
                   style: TextStyle(
-                    color: Colors.white.withOpacity(0.5),
+                    color: Colors.white.withValues(alpha: 0.5),
                     fontSize: 13,
                   ),
                 ),
